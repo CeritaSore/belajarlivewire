@@ -3,19 +3,20 @@
 use Livewire\Component;
 
 new class extends Component {
-    public string $menu = '';
-    public string $link = '';
+    public $title;
+    public $navmenu = [];
 };
 ?>
 
 <div>
-    <nav class="navbar flex">
-        <a href="#">Fajar Septianto</a>
-        <button class="navbar-button"></button>
-        <div class="nav-menu">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+    {{-- @dd($navmenu) --}}
+    <nav class="navbar flex bg-slate-600 h-20 justify-between items-center px-20">
+        <a href="#" class="text-white text-xl font-semibold">{{ $title }}</a>
+        <button class="navbar-button hidden"></button>
+        <div class="nav-menu flex w-60 gap-2 justify-between">
+            @foreach ($navmenu as $navMenu)
+                <a href="{{ $navMenu['url'] }}" class="text-white font-semibold">{{ $navMenu['names'] }}</a>
+            @endforeach
         </div>
     </nav>
 </div>

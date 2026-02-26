@@ -3,37 +3,30 @@
 use Livewire\Component;
 
 new class extends Component {
-    public string $title = '';
-    public string $content = '';
-    public function save(){
-        $this->validate([
-            'title'=>'required',
-            'content'=>'required'
-        ]);
-        dd($this->title,$this->content);
+    public $name = '';
+    public $email = '';
+    public $password = '';
+    public function save()
+    {
+        dd($this->all('input'));
     }
 };
 ?>
 
 <div>
-    <livewire:navbar></livewire:navbar>
     <form wire:submit="save">
-        <label>
-            Title
-            <input type="text" wire:model="title">
-            @error('title')
-                <span style="color: red;">{{ $message }}</span>
-            @enderror
-        </label>
-
-        <label>
-            Content
-            <textarea wire:model="content" rows="5"></textarea>
-            @error('content')
-                <span style="color: red;">{{ $message }}</span>
-            @enderror
-        </label>
-
-        <button type="submit">Save Post</button>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" wire:model="name" />
+        </div>
+        <div class="form-group">
+            <label for="name">email</label>
+            <input type="email" wire:model="email" />
+        </div>
+        <div class="form-group">
+            <label for="name">password</label>
+            <input type="password" wire:model="password" />
+        </div>
+        <button type="submit">Submit</button>
     </form>
 </div>
