@@ -5,7 +5,7 @@
                 <span class="self-center text-xl text-white font-semibold whitespace-nowrap">Fajar Septianto</span>
             </a>
             <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <livewire:components.buttonlink link='/login' text='Sign In' />
+                <livewire:components.buttonlink link='/portal' text='Sign In' />
                 
                 <button data-collapse-toggle="navbar-user" type="button"
                     class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary"
