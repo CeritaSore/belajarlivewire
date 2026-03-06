@@ -21,10 +21,14 @@ Route::group(['prefix' => 'project'], function () {
 });
 Route::group(['prefix' => 'profile'], function () {
     Route::get('/dashboard', Index::class)->name('profile.index');
-    Route::get('/dashboard/content', Content::class);
-    Route::get('/dashboard/content/create', Create::class);
-    Route::get('/dashboard/profile', Profile::class);
-    Route::get('/dashboard/settings', Settings::class);
+    Route::get('/dashboard/content', Content::class)->name('profile.content');
+    Route::get('/dashboard/content/create', Create::class)->name('profile.content.create');
+    Route::get('/dashboard/content/edit/{id}', Create::class)->name('profile.content.edit');
+    Route::get('/dashboard/profile', Profile::class)->name('profile.profile');
+    Route::get('/dashboard/settings', Settings::class)->name('profile.settings');
+    Route::get('/dashboard/signout', function () {
+        return ('halo signout');
+    })->name('profile.signout');
 });
 Route::group(['prefix' => 'expense'], function () {
     Route::get('/', function () {

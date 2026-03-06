@@ -2,7 +2,7 @@
     <nav class="flex" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
             <li class="inline-flex items-center">
-                <a href="/dashboard" wire:navigate
+                <a href="/profile/dashboard" wire:navigate
                     class="inline-flex items-center text-sm font-medium text-body hover:text-fg-brand">
                     <svg class="w-4 h-4 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24">
@@ -13,13 +13,15 @@
                 </a>
             </li>
 
-            @php $url = ''; @endphp
+            @php $currentUrl = ''; @endphp
 
-            @foreach ($segments as $index => $segment)
+            @foreach ($segments as $segment)
                 @php
-                    $url .= '/' . $segment;
-                    // Kita lewati index 0 jika itu 'dashboard' karena sudah ada 'Home' di atas
-                    if ($segment == 'dashboard') {
+                    $currentUrl .= '/' . $segment;
+
+                    // SKIP visualisasi jika segmen adalah 'profile' atau 'dashboard'
+                    // Karena sudah diwakili oleh tombol "Home" di atas
+                    if ($segment == 'profile' || $segment == 'dashboard') {
                         continue;
                     }
                 @endphp
@@ -33,7 +35,7 @@
                         </svg>
 
                         @if (!$loop->last)
-                            <a href="{{ $url }}" wire:navigate
+                            <a href="{{ $currentUrl }}" wire:navigate
                                 class="inline-flex items-center text-sm font-medium text-body hover:text-fg-brand capitalize">
                                 {{ str_replace('-', ' ', $segment) }}
                             </a>

@@ -13,18 +13,19 @@
 
 @php
     $menu = [
-        ['name' => 'Dashboard', 'link' => '/dashboard'],
-        ['name' => 'Content', 'link' => '/dashboard/content'],
-        ['name' => 'Profile', 'link' => '/dashboard/profile'],
-        ['name' => 'Settings', 'link' => '/dashboard/settings'],
+        ['name' => 'Dashboard', 'link' => '/profile/dashboard'],
+        ['name' => 'Content', 'link' => '/profile/dashboard/content'],
+        ['name' => 'Profile', 'link' => '/profile/dashboard/profile'],
+        ['name' => 'Settings', 'link' => '/profile/dashboard/settings'],
     ];
     $navmenu = [
-        ['name' => 'Profile', 'link' => '/dashboard/profile'],
-        ['name' => 'Signout', 'link' => '/dashboard/signout'],
+        ['name' => 'Profile', 'link' => '/profile/dashboard/profile'],
+        ['name' => 'Signout', 'link' => '/profile/dashboard/signout'],
     ];
 @endphp
 
-<body>
+<body class="">
+
     <livewire:components.sidebar :menu='$menu' :navmenu='$navmenu' />
     <div class="p-4 sm:ml-64 mt-14">
         <livewire:components.breadcrump />
@@ -34,6 +35,7 @@
     </div>
 
     @livewireScripts
+
 </body>
 
 </html>
