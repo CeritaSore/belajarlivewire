@@ -1,41 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $title ?? 'Dashboard' }}</title>
 
+    <title>{{ $title ?? 'Landing Page' }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @livewireStyles
 </head>
 
-@php
-    $menu = [
-        ['name' => 'Dashboard', 'link' => '/profile/dashboard'],
-        ['name' => 'Content', 'link' => '/profile/dashboard/content'],
-        ['name' => 'Profile', 'link' => '/profile/dashboard/profile'],
-        ['name' => 'Settings', 'link' => '/profile/dashboard/settings'],
-    ];
-    $navmenu = [
-        ['name' => 'Profile', 'link' => '/profile/dashboard/profile'],
-        ['name' => 'Signout', 'link' => '/profile/dashboard/signout'],
-    ];
-@endphp
-
-<body class="">
-
-    <livewire:components.sidebar :menu='$menu' :navmenu='$navmenu' />
-    <div class="p-4 sm:ml-64 mt-14">
-        <livewire:components.breadcrump />
-        <div class="p-4 ">
+<body>
+    <div class="flex min-h-screen">
+        @php
+            $currentPath = request()->path();
+            $menu = [
+                ['link' => '/dashboard', 'name' => 'Dashboard', 'active' => $currentPath === 'dashboard'],
+                [
+                    'link' => '/dashboard/hero',
+                    'name' => 'Hero Section',
+                    'active' => str_starts_with($currentPath, 'dashboard/hero'),
+                ],
+                [
+                    'link' => '/dashboard/about',
+                    'name' => 'About Section',
+                    'active' => str_starts_with($currentPath, 'dashboard/about'),
+                ],
+                [
+                    'link' => '/dashboard/education',
+                    'name' => 'Education Section',
+                    'active' => str_starts_with($currentPath, 'dashboard/education'),
+                ],
+                [
+                    'link' => '/dashboard/work-experiences',
+                    'name' => 'Work Section',
+                    'active' => str_starts_with($currentPath, 'dashboard/work-experiences'),
+                ],
+                [
+                    'link' => '/dashboard/projects',
+                    'name' => 'Projects Section',
+                    'active' => str_starts_with($currentPath, 'dashboard/projects'),
+                ],
+                [
+                    'link' => '/dashboard/contact',
+                    'name' => 'Contact Section',
+                    'active' => str_starts_with($currentPath, 'dashboard/contact'),
+                ],
+            ];
+        @endphp
+        <x-backend.sidebar sidebarTitle="Dashboard" sidebarTagline="Management Profile" :sidebarMenu="$menu" />
+        <main class="ml-64 flex-1 p-8">
+            <!-- Dashboard Section -->
             {{ $slot }}
-        </div>
+        </main>
     </div>
-
-    @livewireScripts
-
 </body>
 
 </html>
